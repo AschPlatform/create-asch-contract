@@ -1,18 +1,18 @@
 ## create-asch-dapp
 
-Asch contract DApp template.
+create asch contract DApp.
 
 ### Usage
 
 ```sh
 $ npm i create-asch-dapp -g
-$ create-asch-dapp [my-asch-dapp]
+$ create-asch-dapp my-asch-dapp
 $ cd my-asch-dapp && npm test
 ```
 
 ### Debug
 
-前提：安装 VS Cdoee
+前提：安装 VS Code
 
 方法一：
 
