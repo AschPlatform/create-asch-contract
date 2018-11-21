@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const inquirer = require('inquirer')
+const username = require('username')
+const shell = require('shelljs')
+const pkg = require('../template/package')
+const dirName = process.argv[1]
+
+inquirer.prompt([
+  {
+    type: 'input',
+    name: 'name',
+    message: 'package name',
+    default: pkg.name
+  },
+  {
+    type: 'input',
+    name: 'version',
+    message: 'version',
+    default: pkg.version
+  },
+  {
+    type: 'input',
+    name: 'description',
+    message: 'description',
+    default: pkg.description
+  },
+  {
+    type: 'input',
+    name: 'author',
+    message: 'author',
+    default: username.sync()
+  },
+  {
+    type: 'input',
+    name: 'license',
+    message: 'license',
+    default: pkg.license
+  }
+])
+  .then(answers => {
+    const dir = path.join(process.cwd(), dirName || pkg.name)
+    shell.mkdir('-p', dir)
+    shell.cp('-R', path.join(__dirname, '../template/*'), dir)
+    Object.assign(pkg, answers)
+    shell.cd(dir)
+    shell.ShellString(JSON.stringify(pkg, null, 2)).to('package.json')
+    const child = shell.exec('npm i', { async: true })
+    shell.echo('npm install...')
+    child.stdout.on('data', console.log)
+  })

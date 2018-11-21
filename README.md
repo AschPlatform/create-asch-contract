@@ -5,9 +5,9 @@ Asch contract DApp template.
 ### Usage
 
 ```sh
-$ git clone https://github.com/AschPlatform/create-asch-dapp.git
-$ npm i
-$ npm test
+$ npm i create-asch-dapp -g
+$ create-asch-dapp [my-asch-dapp]
+$ cd my-asch-dapp && npm test
 ```
 
 ### Debug
