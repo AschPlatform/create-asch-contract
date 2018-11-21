@@ -5,7 +5,7 @@ const inquirer = require('inquirer')
 const username = require('username')
 const shell = require('shelljs')
 const pkg = require('../template/package')
-const dirName = process.argv[1]
+const dirName = process.argv[2]
 
 inquirer.prompt([
   {

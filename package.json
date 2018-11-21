@@ -1,6 +1,6 @@
 {
   "name": "create-asch-dapp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Asch contract DApp template.",
   "author": "asch",
   "bin": {
