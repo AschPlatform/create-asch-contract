@@ -1,0 +1,45 @@
+{
+  "name": "create-asch-dapp",
+  "version": "0.2.0",
+  "description": "Asch contract DApp template.",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "asch",
+  "license": "ISC",
+  "dependencies": {
+    "asch-contract-core": "0.2.8",
+    "asch-contract-tslint": "0.2.4",
+    "asch-contract-types": "0.2.3"
+  },
+  "devDependencies": {
+    "@types/jest": "23.3.9",
+    "jest": "23.6.0",
+    "ts-jest": "23.10.4",
+    "ts-node": "7.0.1",
+    "typescript": "3.1.6"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "mock.ts"
+    ]
+  },
+  "types": "asch-contract-types"
+}
