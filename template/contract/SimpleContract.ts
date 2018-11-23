@@ -1,7 +1,7 @@
 /// <reference types="asch-contract-types" />
 
 // 合约类只持实例属性和实例方法，不支持静态方法，必须有一个无参的构造函数（可以不写构造函数，系统会默认创建一个）
-export default class MyContract extends AschContract {
+export default class SimpleContract extends AschContract {
   // 属性为合约的状态，合约调用后，状态的变化会自动持久化到数据库中。
   // 属性的类型支持 基本类型（ string, number, boolean )、内置类型 ( BigInt、Mapping )、自定义状态类型
   // 容器仅支持 Mapping，Mapping中存储的元素是除容器外的支持的属性类型

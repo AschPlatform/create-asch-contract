@@ -1,13 +1,13 @@
-## create-asch-dapp
+## create-asch-contract
 
-create asch contract DApp.
+create asch contract.
 
 ### Usage
 
 ```sh
-$ npm i create-asch-dapp -g
-$ create-asch-dapp my-asch-dapp
-$ cd my-asch-dapp && npm test
+$ npm i create-asch-contract -g
+$ create-asch-contract
+$ cd [my-asch-contract] && npm test
 ```
 
 ### Debug
@@ -18,13 +18,13 @@ $ cd my-asch-dapp && npm test
 
 ```
 1. VS Code 安装 [Jest Runner](https://marketplace.visualstudio.com/items?itemName=firsttris.vscode-jest-runner)
-2. 在 __tests__/MyContract.test.ts 某个 it 测试里添加断点，右键选择「Debug Jest」
+2. 在 __tests__/SimpleContract.test.ts 某个 it 测试里添加断点，右键选择「Debug Jest」
 ```
 
 方法二：
 
 ```
-1. 自己编写 test.ts，引入 mock.ts 和 MyContract.ts
+1. 自己编写 test.ts，引入 mock.ts 和 SimpleContract.ts
 2. 设置 .vscode/launch.json
 {
   "version": "0.2.0",
@@ -41,6 +41,6 @@ $ cd my-asch-dapp && npm test
     }
   ]
 }
-3. 在 MyContract.ts 添加断点
+3. 在 SimpleContract.ts 添加断点
 4. 启动调试
 ```

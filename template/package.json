@@ -1,7 +1,7 @@
 {
-  "name": "my-asch-dapp",
+  "name": "my-asch-contract",
   "version": "1.0.0",
-  "description": "My Asch contract DApp.",
+  "description": "My Asch contract.",
   "scripts": {
     "test": "jest"
   },

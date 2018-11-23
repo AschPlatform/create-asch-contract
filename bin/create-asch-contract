@@ -5,7 +5,6 @@ const inquirer = require('inquirer')
 const username = require('username')
 const shell = require('shelljs')
 const pkg = require('../template/package')
-const dirName = process.argv[2]
 
 inquirer.prompt([
   {
@@ -40,7 +39,7 @@ inquirer.prompt([
   }
 ])
   .then(answers => {
-    const dir = path.join(process.cwd(), dirName || pkg.name)
+    const dir = path.join(process.cwd(), answers.name)
     shell.mkdir('-p', dir)
     shell.cp('-R', path.join(__dirname, '../template/*'), dir)
     Object.assign(pkg, answers)
@@ -48,5 +47,7 @@ inquirer.prompt([
     shell.ShellString(JSON.stringify(pkg, null, 2)).to('package.json')
     const child = shell.exec('npm i', { async: true })
     shell.echo('npm install...')
-    child.stdout.on('data', console.log)
+    child.on('exit', (code) => {
+      console.log('done!')
+    })
   })

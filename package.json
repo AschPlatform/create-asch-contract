@@ -1,10 +1,10 @@
 {
-  "name": "create-asch-dapp",
-  "version": "0.2.1",
-  "description": "Asch contract DApp template.",
+  "name": "create-asch-contract",
+  "version": "0.2.2",
+  "description": "create asch contract.",
   "author": "asch",
   "bin": {
-    "create-asch-dapp": "bin/create-asch-dapp"
+    "create-asch-contract": "bin/create-asch-contract"
   },
   "license": "ISC",
   "dependencies": {
