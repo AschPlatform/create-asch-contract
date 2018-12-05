@@ -42,7 +42,7 @@ export default class SimpleContract extends AschContract {
   play (amount: number): string {
     const senderAddress = this.context!.senderAddress
     assert(amount > 0, 'invalid amount, must great than 0')
-    assert(this.getHolding(senderAddress) > amount, `holding less than ${amount}`)
+    assert(this.getHolding(senderAddress) > BigInt(amount), `holding less than ${amount}`)
 
     const firstValue = String(amount).charCodeAt(0)
     if (firstValue % 2 === 0) {
@@ -56,9 +56,9 @@ export default class SimpleContract extends AschContract {
     }
   }
 
-  private increaseHolding (address: string, value: BigInt): void {
+  private increaseHolding (address: string, value: BigInt | number): void {
     const holdingValue = this.holding.get(address) || BigInt(0)
-    this.holding.set(address, holdingValue + BigInt(value))
+    this.holding.set(address, BigInt(holdingValue) + BigInt(value))
   }
 
   private getHolding (address: string): BigInt {
