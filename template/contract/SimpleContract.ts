@@ -7,8 +7,8 @@ export default class SimpleContract extends AschContract {
   // 容器仅支持 Mapping，Mapping中存储的元素是除容器外的支持的属性类型
   // 可见性为public（默认）为外部可查询状态，private和protected 外部不可通过queryState查询
   companyAddress: string
-  totalAmount: BigInt
-  holding: Mapping<BigInt>
+  totalAmount: bigint
+  holding: Mapping<bigint>
 
   // 方法中有两个约定的方法 init 和 onPay 分别用于合约初始化和合约地址收到转账后的动作
   // 这两个方法的可见性必须是public, public 在编写时可以省略。public 的方法表示是外部可调用的方法
@@ -23,7 +23,7 @@ export default class SimpleContract extends AschContract {
     const totalAmount = 1000000
     this.companyAddress = companyAddress
     this.totalAmount = BigInt(totalAmount)
-    this.holding = new Mapping<BigInt>()
+    this.holding = new Mapping<bigint>()
     this.holding.set(companyAddress, BigInt(totalAmount))
   }
 
@@ -56,12 +56,12 @@ export default class SimpleContract extends AschContract {
     }
   }
 
-  private increaseHolding (address: string, value: BigInt | number): void {
+  private increaseHolding (address: string, value: bigint | number): void {
     const holdingValue = this.holding.get(address) || BigInt(0)
-    this.holding.set(address, BigInt(holdingValue) + BigInt(value))
+    this.holding.set(address, holdingValue + BigInt(value))
   }
 
-  private getHolding (address: string): BigInt {
+  private getHolding (address: string): bigint {
     assert(this.holding.has(address), 'please buy stock first')
     return this.holding.get(address)!
   }
