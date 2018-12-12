@@ -20,11 +20,11 @@ export default class SimpleContract extends AschContract {
   // 初始化方法，会在合约注册时被调用
   init (): void {
     const companyAddress = 'COMPANY_ADDRESS'
-    const totalAmount = 1000000
+    const totalAmount = BigInt(1000000)
     this.companyAddress = companyAddress
-    this.totalAmount = BigInt(totalAmount)
+    this.totalAmount = totalAmount
     this.holding = new Mapping<bigint>()
-    this.holding.set(companyAddress, BigInt(totalAmount))
+    this.holding.set(companyAddress, totalAmount)
   }
 
   // 当向本合约地址转账时会自动调用，如果抛出异常转账会被回滚

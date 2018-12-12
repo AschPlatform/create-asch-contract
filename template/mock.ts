@@ -19,7 +19,7 @@ class AschContract {
     return getContext()
   }
 
-  protected transfer (recipientAddress: string, amount: number | string | BigInt , currency: string): void {}
+  protected transfer (recipientAddress: string, amount: number | string | bigint , currency: string): void {}
 }
 
 global.AschContract = AschContract
