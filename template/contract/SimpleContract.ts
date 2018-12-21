@@ -24,7 +24,7 @@ export default class SimpleContract extends AschContract {
     this.companyAddress = companyAddress
     this.totalAmount = totalAmount
     this.holding = new Mapping<bigint>()
-    this.holding.set(companyAddress, totalAmount)
+    this.holding[companyAddress] = totalAmount
   }
 
   // 当向本合约地址转账时会自动调用，如果抛出异常转账会被回滚
@@ -57,12 +57,12 @@ export default class SimpleContract extends AschContract {
   }
 
   private increaseHolding (address: string, value: bigint | number): void {
-    const holdingValue = this.holding.get(address) || BigInt(0)
-    this.holding.set(address, holdingValue + BigInt(value))
+    const holdingValue = this.holding[address] || BigInt(0)
+    this.holding[address] = holdingValue + BigInt(value)
   }
 
   private getHolding (address: string): bigint {
-    assert(this.holding.has(address), 'please buy stock first')
-    return this.holding.get(address)!
+    assert(address in this.holding, 'please buy stock first')
+    return this.holding[address]!
   }
 }

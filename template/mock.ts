@@ -25,4 +25,3 @@ class AschContract {
 global.AschContract = AschContract
 global.Mapping = aschContractCore.Mapping.Mapping
 global.assert = aschContractCore.assert.assert
-global.require = aschContractCore.assert.require

@@ -10,7 +10,7 @@ describe('SimpleContract', () => {
 
     expect(simpleContract.companyAddress).toBe('COMPANY_ADDRESS')
     expect(String(simpleContract.totalAmount)).toBe('1000000')
-    expect(simpleContract.holding.get(simpleContract.companyAddress)).toEqual(simpleContract.totalAmount)
+    expect(simpleContract.holding[simpleContract.companyAddress]).toEqual(simpleContract.totalAmount)
   })
 
   it('onPay', () => {
@@ -18,8 +18,8 @@ describe('SimpleContract', () => {
     simpleContract.init()
     simpleContract.onPay(100, 'XAS')
 
-    expect(simpleContract.holding.get(simpleContract.companyAddress)).toEqual(BigInt(999900))
-    expect(simpleContract.holding.get('senderAddress')).toEqual(BigInt(100))
+    expect(simpleContract.holding[simpleContract.companyAddress]).toEqual(BigInt(999900))
+    expect(simpleContract.holding['senderAddress']).toEqual(BigInt(100))
   })
 
   it('onPay error', () => {
@@ -37,13 +37,13 @@ describe('SimpleContract', () => {
 
     let result = simpleContract.play(1)
     expect(result).toBe('lost 1')
-    expect(simpleContract.holding.get(simpleContract.companyAddress)).toEqual(BigInt(999901))
-    expect(simpleContract.holding.get('senderAddress')).toEqual(BigInt(99))
+    expect(simpleContract.holding[simpleContract.companyAddress]).toEqual(BigInt(999901))
+    expect(simpleContract.holding['senderAddress']).toEqual(BigInt(99))
 
     result = simpleContract.play(2)
     expect(result).toBe('win 2')
-    expect(simpleContract.holding.get(simpleContract.companyAddress)).toEqual(BigInt(999899))
-    expect(simpleContract.holding.get('senderAddress')).toEqual(BigInt(101))
+    expect(simpleContract.holding[simpleContract.companyAddress]).toEqual(BigInt(999899))
+    expect(simpleContract.holding['senderAddress']).toEqual(BigInt(101))
   })
 
   it('play error', () => {

@@ -12,7 +12,7 @@ $ cd [my-asch-contract] && npm test
 
 ### Debug
 
-前提：安装 VS Code
+前提：安装 VS Code + TSLint 插件
 
 方法一：
 
