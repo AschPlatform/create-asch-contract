@@ -10,15 +10,10 @@ export default class SimpleContract extends AschContract {
   totalAmount: bigint
   holding: Mapping<bigint>
 
-  // 方法中有两个约定的方法 init 和 onPay 分别用于合约初始化和合约地址收到转账后的动作
-  // 这两个方法的可见性必须是public, public 在编写时可以省略。public 的方法表示是外部可调用的方法
-  // @constant 装饰的方法是只读方法，这种方法不修改状态（ 修改状态会产生异常 ），在调用时不消耗GAS，可以作为接口供外部使用（非打包时执行）
-  // 其他public方法是合约调用方法，一般会修改合约状态。在区块被打包时执行（具体依赖产块逻辑），根据其执行消耗的资源（包括CPU和存储）计算GAS
-  // 非public的方法是内部方法，无法进行外部访问，只能在合约内部使用
-  // 每个方法应写清参数的类型和返回值的类型，参数仅支持基本类型。通常非@constant的合约调用方法返回值是 void
-
   // 初始化方法，会在合约注册时被调用
-  init (): void {
+  constructor () {
+    super()
+
     const companyAddress = 'COMPANY_ADDRESS'
     const totalAmount = BigInt(1000000)
     this.companyAddress = companyAddress
