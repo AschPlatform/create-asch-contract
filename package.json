@@ -1,6 +1,6 @@
 {
   "name": "create-asch-contract",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "description": "create asch contract.",
   "author": "asch",
   "bin": {
