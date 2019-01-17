@@ -24,4 +24,5 @@ class AschContract {
 
 global.AschContract = AschContract
 global.Mapping = aschContractCore.Mapping.Mapping
+global.Crypto = aschContractCore.Crypto.Crypto
 global.assert = aschContractCore.assert.assert

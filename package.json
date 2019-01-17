@@ -1,6 +1,6 @@
 {
   "name": "create-asch-contract",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "create asch contract.",
   "author": "asch",
   "bin": {
@@ -13,10 +13,10 @@
     "username": "4.0.0"
   },
   "devDependencies": {
-    "eslint": "5.11.0",
+    "eslint": "5.12.0",
     "eslint-config-standard": "12.0.0",
     "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-node": "8.0.0",
+    "eslint-plugin-node": "8.0.1",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0"
   }
