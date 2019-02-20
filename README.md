@@ -1,6 +1,6 @@
 ## create-asch-contract
 
-create asch contract.
+阿希智能合约脚手架。
 
 ### Usage
 
@@ -10,7 +10,7 @@ $ create-asch-contract
 $ cd [my-asch-contract] && npm test
 ```
 
-### Debug
+### 本地调试
 
 前提：安装 VS Code + TSLint 插件
 
@@ -44,3 +44,9 @@ $ cd [my-asch-contract] && npm test
 3. 在 SimpleContract.ts 添加断点
 4. 启动调试
 ```
+
+### 相关模块
+
+- asch-contract-core: asch 智能合约核心实现
+- asch-contract-types: TypeScript 的 .d.ts 头文件
+- asch-contract-tslint: TypeScript 的 lint 规范
