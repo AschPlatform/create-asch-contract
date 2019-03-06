@@ -8,7 +8,7 @@
     "alwaysStrict": true,
     "noImplicitThis": true,
     "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
+    "strictPropertyInitialization": false,
     "noImplicitAny": true,
     "noUnusedLocals": true
   }

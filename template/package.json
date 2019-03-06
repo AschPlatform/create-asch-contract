@@ -10,7 +10,7 @@
   "dependencies": {
     "asch-contract-core": "~0.3.3",
     "asch-contract-tslint": "~0.3.0",
-    "asch-contract-types": "~0.3.0"
+    "asch-contract-types": "~0.3.1"
   },
   "devDependencies": {
     "@types/jest": "24.0.9",
@@ -20,6 +20,11 @@
     "typescript": "3.3.3333"
   },
   "jest": {
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    },
     "transform": {
       "^.+\\.ts$": "ts-jest"
     },
