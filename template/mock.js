@@ -1,6 +1,4 @@
-/// <reference types="asch-contract-types" />
-
-import * as aschContractCore from 'asch-contract-core'
+const aschContractCore = require('asch-contract-core')
 
 const getContext = (function () {
   let height = 0
@@ -15,11 +13,11 @@ const getContext = (function () {
 })()
 
 class AschContract {
-  get context (): ContractContext {
+  get context () {
     return getContext()
   }
 
-  protected transfer (recipientAddress: string, amount: number | string | bigint , currency: string): void {}
+  transfer (recipientAddress, amount, currency) {}
 }
 
 global.AschContract = AschContract

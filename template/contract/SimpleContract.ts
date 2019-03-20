@@ -15,7 +15,7 @@ export default class SimpleContract extends AschContract {
     this.holding[companyAddress] = totalAmount
   }
 
-  @payable ({ isDefault : true })
+  @payable({ isDefault : true })
   onPay (amount: bigint, currency: string): void {
     assert(amount > 0, 'XAS amount must great than 0')
     assert(currency === 'XAS', 'support XAS only')

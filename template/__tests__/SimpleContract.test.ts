@@ -13,7 +13,7 @@ describe('SimpleContract', () => {
 
   it('onPay', () => {
     const simpleContract = new SimpleContract()
-    simpleContract.onPay(1, 'XAS')
+    simpleContract.onPay(1n, 'XAS')
 
     expect(simpleContract.holding[simpleContract.companyAddress]).toEqual(98n)
     expect(simpleContract.holding['senderAddress']).toEqual(2n)
@@ -28,7 +28,7 @@ describe('SimpleContract', () => {
 
   it('play', () => {
     const simpleContract = new SimpleContract()
-    simpleContract.onPay(2, 'XAS')
+    simpleContract.onPay(2n, 'XAS')
 
     let result = simpleContract.play(1)
     expect(result).toBe('lost 1')
@@ -43,7 +43,7 @@ describe('SimpleContract', () => {
 
   it('play error', () => {
     const simpleContract = new SimpleContract()
-    simpleContract.onPay(1, 'XAS')
+    simpleContract.onPay(1n, 'XAS')
 
     expect(simpleContract.play.bind(simpleContract, 0)).toThrowError('stock amount must great than 0')
     expect(simpleContract.play.bind(simpleContract, 101)).toThrowError('holding 2 stock less than 101')

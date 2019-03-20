@@ -8,9 +8,9 @@
   "author": "asch",
   "license": "ISC",
   "dependencies": {
-    "asch-contract-core": "~0.3.8",
+    "asch-contract-core": "~0.3.9",
     "asch-contract-tslint": "~0.3.0",
-    "asch-contract-types": "~0.3.2"
+    "asch-contract-types": "~0.3.3"
   },
   "devDependencies": {
     "@types/jest": "24.0.11",
