@@ -30,12 +30,12 @@ describe('SimpleContract', () => {
     const simpleContract = new SimpleContract()
     simpleContract.onPay(2n, 'XAS')
 
-    let result = simpleContract.play(1)
+    let result = simpleContract.play(1n)
     expect(result).toBe('lost 1')
     expect(simpleContract.holding[simpleContract.companyAddress]).toEqual(97n)
     expect(simpleContract.holding['senderAddress']).toEqual(3n)
 
-    result = simpleContract.play(2)
+    result = simpleContract.play(2n)
     expect(result).toBe('win 2')
     expect(simpleContract.holding[simpleContract.companyAddress]).toEqual(95n)
     expect(simpleContract.holding['senderAddress']).toEqual(5n)
