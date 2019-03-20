@@ -8,16 +8,16 @@
   "author": "asch",
   "license": "ISC",
   "dependencies": {
-    "asch-contract-core": "~0.3.6",
+    "asch-contract-core": "~0.3.8",
     "asch-contract-tslint": "~0.3.0",
-    "asch-contract-types": "~0.3.1"
+    "asch-contract-types": "~0.3.2"
   },
   "devDependencies": {
     "@types/jest": "24.0.11",
     "jest": "24.5.0",
     "ts-jest": "24.0.0",
     "ts-node": "8.0.3",
-    "typescript": "3.3.3333"
+    "typescript": "3.3.4000"
   },
   "jest": {
     "globals": {

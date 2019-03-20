@@ -27,5 +27,6 @@ global.Mapping = aschContractCore.Mapping.Mapping
 global.Vector = aschContractCore.Vector.Vector
 global.Crypto = aschContractCore.Crypto.Crypto
 global.assert = aschContractCore.assert.assert
+global.ByteBuffer = aschContractCore.ByteBuffer.ByteBuffer
 global.payable = () => () => {}
 global.constant = () => () => {}
