@@ -1,53 +1,138 @@
 #!/usr/bin/env node
 
+const fs = require('fs')
 const path = require('path')
 const inquirer = require('inquirer')
 const username = require('username')
 const shell = require('shelljs')
+const program = require('commander')
+const chalk = require('chalk')
+const AschContract = require('asch-contract').AschContract
+
 const pkg = require('../template/package')
 
-inquirer.prompt([
-  {
-    type: 'input',
-    name: 'name',
-    message: 'package name',
-    default: pkg.name
-  },
-  {
-    type: 'input',
-    name: 'version',
-    message: 'version',
-    default: pkg.version
-  },
-  {
-    type: 'input',
-    name: 'description',
-    message: 'description',
-    default: pkg.description
-  },
-  {
-    type: 'input',
-    name: 'author',
-    message: 'author',
-    default: username.sync()
-  },
-  {
-    type: 'input',
-    name: 'license',
-    message: 'license',
-    default: pkg.license
-  }
-])
-  .then(answers => {
-    const dir = path.join(process.cwd(), answers.name)
-    shell.mkdir('-p', dir)
-    shell.cp('-R', path.join(__dirname, '../template/*'), dir)
-    Object.assign(pkg, answers)
-    shell.cd(dir)
-    shell.ShellString(JSON.stringify(pkg, null, 2)).to('package.json')
-    const child = shell.exec('npm i', { async: true })
-    shell.echo('npm install...')
-    child.on('exit', (code) => {
-      console.log('done!')
-    })
+program
+  .version(pkg.version)
+  .usage('[command] <option>')
+
+program
+  .command('init [contractName]')
+  .description('create a new contract')
+  .action(function(contractName, options) {
+    createContract(contractName)
   })
+
+program
+  .command('verify [myContract.ts]')
+  .description('verify a contract code')
+  .action(function(filename, options) {
+    const filepath = path.join(process.cwd(), filename)
+    const contractCode = fs.readFileSync(filepath, { encoding: 'utf8' })
+
+    verifyContract(contractCode)
+      .then((result) => {
+        if (result.success) {
+          console.log(chalk.green(`Verify success! consumed ${result.gas} gas.`))
+        } else {
+          console.error(chalk.red(result.error))
+        }
+      })
+      .catch(e => {
+        console.error(e.message)
+      })
+  })
+
+if (process.argv.length <= 2) {
+  program.outputHelp()
+}
+
+program
+  .command('*')
+  .action(function(env){
+    program.outputHelp()
+  })
+
+program.parse(process.argv)
+
+function createContract(contractName) {
+  inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'contract name',
+      default: contractName
+    },
+    {
+      type: 'input',
+      name: 'version',
+      message: 'version',
+      default: pkg.version
+    },
+    {
+      type: 'input',
+      name: 'description',
+      message: 'description',
+      default: pkg.description
+    },
+    {
+      type: 'input',
+      name: 'author',
+      message: 'author',
+      default: username.sync()
+    },
+    {
+      type: 'input',
+      name: 'license',
+      message: 'license',
+      default: pkg.license
+    }
+  ])
+    .then(answers => {
+      const dir = path.join(process.cwd(), answers.name)
+      shell.mkdir('-p', dir)
+      shell.cp('-R', path.join(__dirname, '../template/*'), dir)
+      Object.assign(pkg, answers)
+      shell.cd(dir)
+      shell.ShellString(JSON.stringify(pkg, null, 2)).to('package.json')
+      const child = shell.exec('npm i', { async: true })
+      shell.echo('npm install...')
+      child.on('exit', (code) => {
+        console.log('done!')
+      })
+    })
+}
+
+async function verifyContract(contractCode) {
+  const sandbox = new AschContract.SandboxConnector({
+    entry: require.resolve('asch-contract/sandbox-launcher'),
+    dataDir : path.join(__dirname, '../state-db'),
+    logDir : path.join(__dirname, '../logs'),
+    logConfig: {
+      enableContractLogger: false,
+      logLevelConfig: { defaultLogLevel: AschContract.LogLevel.none }
+    },
+    debug: false
+  })
+
+  function getContext() {
+    return {
+      transaction : { id : (Math.random() * 15).toString(16) + '2123212', height : 1, args: []},
+      senderAddress: 'senderAddress',
+      block : { height : 1, timestamp : 1, version : 'v1.0' },
+    }
+  }
+
+  await sandbox.connect()
+
+  try {
+    const result = await sandbox.registerContract(100000000, 30000, getContext(), 2, 'my_asch_contract', contractCode)
+    return result
+  }
+  catch (err) {
+    throw err
+  }
+  finally {
+    await sandbox.disconnect()
+  }
+
+}
