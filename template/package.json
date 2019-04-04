@@ -10,11 +10,11 @@
   "dependencies": {
     "asch-contract-core": "~0.3.16",
     "asch-contract-tslint": "~0.3.2",
-    "asch-contract-types": "~0.3.7"
+    "asch-contract-types": "~0.3.8"
   },
   "devDependencies": {
     "@types/jest": "24.0.11",
-    "jest": "24.5.0",
+    "jest": "24.7.1",
     "ts-jest": "24.0.1",
     "ts-node": "8.0.3",
     "typescript": "3.4.1"
