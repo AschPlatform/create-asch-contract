@@ -6,7 +6,7 @@
 
 ```sh
 $ npm i create-asch-contract -g
-$ create-asch-contract
+$ create-asch-contract init
 $ cd [my-asch-contract] && npm test
 ```
 
