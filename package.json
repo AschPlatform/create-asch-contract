@@ -1,6 +1,6 @@
 {
   "name": "create-asch-contract",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "description": "create asch contract.",
   "author": "asch",
   "bin": {
@@ -8,17 +8,17 @@
   },
   "license": "ISC",
   "dependencies": {
-    "asch-contract": "0.3.7",
+    "asch-contract": "0.3.8",
     "chalk": "2.4.2",
     "commander": "2.20.0",
-    "inquirer": "6.2.2",
+    "inquirer": "6.3.1",
     "shelljs": "0.8.3",
     "username": "4.1.0"
   },
   "devDependencies": {
     "eslint": "5.16.0",
     "eslint-config-standard": "12.0.0",
-    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-import": "2.17.1",
     "eslint-plugin-node": "8.0.1",
     "eslint-plugin-promise": "4.1.1",
     "eslint-plugin-standard": "4.0.0"
