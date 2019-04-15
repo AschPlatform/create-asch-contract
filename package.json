@@ -1,6 +1,6 @@
 {
   "name": "create-asch-contract",
-  "version": "0.3.14",
+  "version": "0.4.0",
   "description": "create asch contract.",
   "author": "asch",
   "bin": {
@@ -8,7 +8,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "asch-contract": "0.3.8",
+    "asch-contract": "0.4.0",
     "chalk": "2.4.2",
     "commander": "2.20.0",
     "inquirer": "6.3.1",
