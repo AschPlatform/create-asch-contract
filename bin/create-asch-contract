@@ -18,14 +18,14 @@ program
 program
   .command('init [contractName]')
   .description('create a new contract')
-  .action(function(contractName, options) {
+  .action(function (contractName) {
     createContract(contractName)
   })
 
 program
   .command('verify [myContract.ts]')
   .description('verify a contract code')
-  .action(function(filename, options) {
+  .action(function (filename) {
     const filepath = path.join(process.cwd(), filename)
     const contractCode = fs.readFileSync(filepath, { encoding: 'utf8' })
 
@@ -48,19 +48,19 @@ if (process.argv.length <= 2) {
 
 program
   .command('*')
-  .action(function(env){
+  .action(function (env) {
     program.outputHelp()
   })
 
 program.parse(process.argv)
 
-function createContract(contractName) {
+function createContract (contractName) {
   inquirer.prompt([
     {
       type: 'input',
       name: 'name',
       message: 'contract name',
-      default: contractName
+      default: contractName || 'my-asch-contract'
     },
     {
       type: 'input',
@@ -102,11 +102,11 @@ function createContract(contractName) {
     })
 }
 
-async function verifyContract(contractCode) {
+async function verifyContract (contractCode) {
   const sandbox = new AschContract.SandboxConnector({
     entry: require.resolve('asch-contract/sandbox-launcher'),
-    dataDir : path.join(__dirname, '../state-db'),
-    logDir : path.join(__dirname, '../logs'),
+    dataDir: path.join(__dirname, '../state-db'),
+    logDir: path.join(__dirname, '../logs'),
     logConfig: {
       enableContractLogger: false,
       logLevelConfig: { defaultLogLevel: AschContract.LogLevel.none }
@@ -114,11 +114,32 @@ async function verifyContract(contractCode) {
     debug: false
   })
 
-  function getContext() {
+  function getContext () {
     return {
-      transaction : { id : (Math.random() * 15).toString(16) + '2123212', height : 1, args: []},
+      transaction: {
+        id: '2f93e9918b43505bcc60e30e92e030eb8721f436b42d04a341da309f7553517c',
+        type: 1,
+        timestamp: 89024675,
+        senderId: 'AC8d6BmvJ4AeftmCNTMVeweCBH96ke2d4D',
+        senderPublicKey: 'cb4611c0cc1978bb2d57a18c68481c07a7ed4345e5fb0d51ceeaca6f82a39837',
+        fee: 10000000,
+        signatures: [
+          'a8ef647bbe08d7c37852d145a53fe19a853f7e1378df08d0347a4684d40ca36e1a5e22ddc88bef402b6c5ac494ad3586109a49d34f705388faed96b9d2eca00c'
+        ],
+        secondSignature: undefined,
+        args: [
+          '312070000000',
+          'AomLjz8o6oPuDZh3JTnaRGGLb7DCfDeyv'
+        ],
+        height: 7969970,
+        message: undefined
+      },
       senderAddress: 'senderAddress',
-      block : { height : 1, timestamp : 1, version : 'v1.0' },
+      block: {
+        height: 121903,
+        delegate: '4110e2ab06a075ff540cbcd9af5d7cce3a416595e7c259f15065895f7c84d16f',
+        timestamp: 89149400
+      }
     }
   }
 
@@ -127,12 +148,9 @@ async function verifyContract(contractCode) {
   try {
     const result = await sandbox.registerContract(100000000, 30000, getContext(), 2, 'my_asch_contract', contractCode)
     return result
-  }
-  catch (err) {
+  } catch (err) {
     throw err
-  }
-  finally {
+  } finally {
     await sandbox.disconnect()
   }
-
 }
