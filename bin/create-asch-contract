@@ -38,7 +38,7 @@ program
         }
       })
       .catch(e => {
-        console.error(e.message)
+        console.error(e)
       })
   })
 
@@ -146,7 +146,7 @@ async function verifyContract (contractCode) {
   await sandbox.connect()
 
   try {
-    const result = await sandbox.registerContract(100000000, 30000, getContext(), 2, 'my_asch_contract', contractCode)
+    const result = await sandbox.registerContract(10000000, getContext(), 1, 'my_asch_contract', contractCode)
     return result
   } catch (err) {
     throw err
